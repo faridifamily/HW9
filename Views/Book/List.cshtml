@@ -1,0 +1,53 @@
+﻿@model List<Book>
+@{
+    ViewData["Title"] = "Books";
+}
+
+<div class="table-responsive">
+    <table class="table  table-bordered table-striped table-hover">
+        <thead class="table-primary">
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Author</th>
+                <th>Genre</th>
+                <th>Exist</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in @Model)
+            {
+                <tr>
+                    <th>@item.Id</th>
+                    <th>@item.Name</th>
+                    <th>@item.Author</th>
+                    <th>@item.Genre</th>
+                    @if (@item.BorrowedTime==null)
+                    {
+                        <th>Yes</th>
+                    }
+                    else
+                    {
+                        <th>NO</th>
+                    }
+                    <th>
+                        <a class="btn btn-warning" asp-controller="Book" asp-action="Edit" asp-route-Id="@item.Id">Edit</a>
+                        <a class="btn btn-danger" asp-controller="Book" asp-action="Delete" asp-route-Id="@item.Id">Delete</a>
+                        @if (@item.BorrowedTime==null)
+                        {
+                            <a class="btn btn-primary" asp-controller="Book" asp-action="Borrow" asp-route-Id="@item.Id">Borrow</a>
+                        }
+                        else
+                        {
+                        <a class="btn btn-primary" asp-controller="Book" asp-action="Return" asp-route-Id="@item.Id">Return</a>
+                        }
+                    </th>
+                </tr>   
+            }
+        </tbody>
+    </table>
+</div>
+
+
+

@@ -1,0 +1,11 @@
+﻿@model dynamic
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Book Count: @Model.BookCount</p>
+    <p>User Count: @Model.UserCount</p>
+    <p>Last Borrowed Time: @Model.LastTime</p>
+</div>
